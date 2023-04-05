@@ -6,6 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /waypointarray_marker1
         - /pursuittarget_marker1
       Splitter Ratio: 0.5
     Tree Height: 547
@@ -168,6 +169,34 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /marker_steering
       Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 46; 194; 126
+      Enabled: true
+      Head Diameter: 0.30000001192092896
+      Head Length: 0.20000000298023224
+      Length: 0.30000001192092896
+      Line Style: Billboards
+      Line Width: 0.4000000059604645
+      Name: Path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 255; 85; 255
+      Pose Style: None
+      Radius: 0.029999999329447746
+      Shaft Diameter: 0.10000000149011612
+      Shaft Length: 0.10000000149011612
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /marker_path
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -213,7 +242,7 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: -1.0800000429153442
+      Angle: -5.280002593994141
       Class: rviz_default_plugins/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
@@ -223,11 +252,11 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 13.370306015014648
+      Scale: 7.406613349914551
       Target Frame: lexus3/base_link
       Value: TopDownOrtho (rviz_default_plugins)
-      X: 8.889427185058594
-      Y: -0.40217292308807373
+      X: 8.783646583557129
+      Y: 6.721834182739258
     Saved: ~
 Window Geometry:
   Displays:
