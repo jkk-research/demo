@@ -47,8 +47,8 @@ def generate_launch_description():
             name='wayp_load',
             output='screen',
             parameters=[
-                {"file_dir": "/mnt/c/waypoints"},
-                {"file_name": "gyor01.csv"}],
+                {"file_dir": "/mnt/bag/waypoints/"},
+                {"file_name": "gyor1.csv"}], # TODO: gyor-> zala
         ),
         Node(
             package='wayp_plan_tools',
@@ -56,11 +56,9 @@ def generate_launch_description():
             name='wayp2target',
             output='screen',
         ),
-        Node(
-            package='wayp_plan_tools',
-            executable='single_goal_pursuit',
-            name='pursuit',
-            output='screen',
-            # TODO: lookahead_distance
-        ),
+        # ros2 launch wayp_plan_tools singe_goal_pursuit.launch.py 
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([
+                FindPackageShare("wayp_plan_tools"), '/launch', '/single_goal_pursuit.launch.py'])
+        ),        
     ])
