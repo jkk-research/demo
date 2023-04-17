@@ -1,4 +1,5 @@
 from launch import LaunchDescription
+from launch.actions import TimerAction
 from launch_ros.actions import Node
 from launch.actions import IncludeLaunchDescription
 from launch_ros.substitutions import FindPackageShare
@@ -29,20 +30,29 @@ def generate_launch_description():
             XMLLaunchDescriptionSource([
                 FindPackageShare("lexus_bringup"), '/launch', '/foxglove_bridge_launch.xml'])
         ),
-        Node(
-            package='lexus_bringup',
-            executable='path_steering_and_kmph',
-            name='path_steering_and_kmph_d',
-            output='screen',
-            parameters=[{"marker_color": "y", "path_size": 550}]
-        ),
-        Node(
-            package='wayp_plan_tools',
-            executable='waypoint_saver',
-            name='wayp_saver',
-            output='screen',
-            parameters=[
-                {"file_dir": "/mnt/bag/waypoints/"},
-                {"file_name": "gyor1.csv"}],
-        )     
+        TimerAction(
+            period=2.0, # delay
+            actions=[
+                Node(
+                    package='lexus_bringup',
+                    executable='path_steering_and_kmph',
+                    name='path_steering_and_kmph_d',
+                    output='screen',
+                    parameters=[{"marker_color": "r", "path_size": 550}]
+                ), 
+            ]),
+        TimerAction(
+            period=3.0, # delay
+            actions=[
+                Node(
+                    package='wayp_plan_tools',
+                    executable='waypoint_saver',
+                    name='wayp_saver',
+                    output='screen',
+                    parameters=[
+                        {"file_dir": "/mnt/bag/waypoints/"},
+                        {"file_name": "gyor1.csv"}],
+                )     
+            ]),    
+
     ])

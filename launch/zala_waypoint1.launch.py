@@ -1,4 +1,5 @@
 from launch import LaunchDescription
+from launch.actions import TimerAction
 from launch_ros.actions import Node
 from launch.actions import IncludeLaunchDescription
 from launch_ros.substitutions import FindPackageShare
@@ -29,18 +30,26 @@ def generate_launch_description():
             XMLLaunchDescriptionSource([
                 FindPackageShare("lexus_bringup"), '/launch', '/foxglove_bridge_launch.xml'])
         ),
-        Node(
-            package='lexus_bringup',
-            executable='path_steering_and_kmph',
-            name='path_steering_and_kmph_d',
-            output='screen',
-            parameters=[{"marker_color": "r", "path_size": 550}]
-        ),
-        # Control nodes        
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([
-                FindPackageShare("lexus_bringup"), '/launch', '/speed_control.launch.py'])
-        ),
+        TimerAction(
+            period=2.0, # delay
+            actions=[
+                Node(
+                    package='lexus_bringup',
+                    executable='path_steering_and_kmph',
+                    name='path_steering_and_kmph_d',
+                    output='screen',
+                    parameters=[{"marker_color": "r", "path_size": 550}]
+                ), 
+            ]),
+        # Control nodes   
+        TimerAction(
+            period=2.0, # delay
+            actions=[
+                IncludeLaunchDescription(
+                    PythonLaunchDescriptionSource([
+                        FindPackageShare("lexus_bringup"), '/launch', '/speed_control.launch.py'])
+                ),
+            ]),     
         Node(
             package='wayp_plan_tools',
             executable='waypoint_loader',
@@ -57,8 +66,12 @@ def generate_launch_description():
             output='screen',
         ),
         # ros2 launch wayp_plan_tools singe_goal_pursuit.launch.py 
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([
-                FindPackageShare("wayp_plan_tools"), '/launch', '/single_goal_pursuit.launch.py'])
-        ),        
+        TimerAction(
+            period=3.0, # delay
+            actions=[
+                IncludeLaunchDescription(
+                    PythonLaunchDescriptionSource([
+                        FindPackageShare("wayp_plan_tools"), '/launch', '/single_goal_pursuit.launch.py'])
+                ),        
+            ]),  
     ])
