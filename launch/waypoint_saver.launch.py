@@ -34,31 +34,15 @@ def generate_launch_description():
             executable='path_steering_and_kmph',
             name='path_steering_and_kmph_d',
             output='screen',
-            parameters=[{"marker_color": "r", "path_size": 550}]
-        ),
-        # Control nodes        
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([
-                FindPackageShare("lexus_bringup"), '/launch', '/speed_control.launch.py'])
+            parameters=[{"marker_color": "y", "path_size": 550}]
         ),
         Node(
             package='wayp_plan_tools',
-            executable='waypoint_loader',
-            name='wayp_load',
+            executable='waypoint_saver',
+            name='wayp_saver',
             output='screen',
             parameters=[
                 {"file_dir": "/mnt/bag/waypoints/"},
-                {"file_name": "gyor1.csv"}], # TODO: gyor-> zala
-        ),
-        Node(
-            package='wayp_plan_tools',
-            executable='waypoint_to_target',
-            name='wayp2target',
-            output='screen',
-        ),
-        # ros2 launch wayp_plan_tools singe_goal_pursuit.launch.py 
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([
-                FindPackageShare("wayp_plan_tools"), '/launch', '/single_goal_pursuit.launch.py'])
-        ),        
+                {"file_name": "gyor1.csv"}],
+        )     
     ])
