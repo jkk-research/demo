@@ -6,6 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /3d marker1
         - /waypointarray_marker1
         - /pursuittarget_marker1
       Splitter Ratio: 0.5
@@ -46,7 +47,7 @@ Visualization Manager:
         Y: 0
         Z: 0
       Plane: XY
-      Plane Cell Count: 100
+      Plane Cell Count: 400
       Reference Frame: <Fixed Frame>
       Value: true
     - Alpha: 1
@@ -134,8 +135,7 @@ Visualization Manager:
       Enabled: true
       Name: waypointarray_marker
       Namespaces:
-        speed_kmph: true
-        waypoints: true
+        {}
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -147,7 +147,7 @@ Visualization Manager:
       Enabled: true
       Name: pursuittarget_marker
       Namespaces:
-        pursuit_goal: true
+        {}
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -200,7 +200,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: map_gyor_0
+    Fixed Frame: map_zala_0
     Frame Rate: 30
   Name: root
   Tools:
@@ -242,7 +242,7 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: -5.280002593994141
+      Angle: 0.9649998545646667
       Class: rviz_default_plugins/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
@@ -252,11 +252,11 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 7.406613349914551
+      Scale: 4.828638076782227
       Target Frame: lexus3/base_link
       Value: TopDownOrtho (rviz_default_plugins)
-      X: 8.783646583557129
-      Y: 6.721834182739258
+      X: -1.041444182395935
+      Y: 0.7035950422286987
     Saved: ~
 Window Geometry:
   Displays:

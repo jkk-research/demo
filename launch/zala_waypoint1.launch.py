@@ -38,7 +38,7 @@ def generate_launch_description():
                     executable='path_steering_and_kmph',
                     name='path_steering_and_kmph_d',
                     output='screen',
-                    parameters=[{"marker_color": "r", "path_size": 550}]
+                    parameters=[{"marker_color": "b", "path_size": 550}]
                 ), 
             ]),
         # Control nodes   
@@ -57,7 +57,12 @@ def generate_launch_description():
             output='screen',
             parameters=[
                 {"file_dir": "/mnt/bag/waypoints/"},
-                {"file_name": "gyor1.csv"}], # TODO: gyor-> zala
+                #{"file_name": "gyor1.csv"}],
+                #{"file_name": "zala02unitest.csv"}],
+                #{"file_name": "zala03uniteljeskor.csv"}],
+                {"file_name": "zala01uni.csv"}],
+                #{"file_name": "zala04smartteljeskor.csv"}],
+
         ),
         Node(
             package='wayp_plan_tools',
@@ -74,4 +79,11 @@ def generate_launch_description():
                         FindPackageShare("wayp_plan_tools"), '/launch', '/single_goal_pursuit.launch.py'])
                 ),        
             ]),  
+        # ros2 run rqt_reconfigure rqt_reconfigure 
+        Node(
+            package='rqt_reconfigure',
+            executable='rqt_reconfigure',
+            name='rqt_rec',
+            #output='screen',
+        ),
     ])

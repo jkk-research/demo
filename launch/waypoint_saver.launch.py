@@ -38,7 +38,7 @@ def generate_launch_description():
                     executable='path_steering_and_kmph',
                     name='path_steering_and_kmph_d',
                     output='screen',
-                    parameters=[{"marker_color": "r", "path_size": 550}]
+                    parameters=[{"marker_color": "p", "path_size": 550}]
                 ), 
             ]),
         TimerAction(
@@ -51,7 +51,11 @@ def generate_launch_description():
                     output='screen',
                     parameters=[
                         {"file_dir": "/mnt/bag/waypoints/"},
-                        {"file_name": "gyor1.csv"}],
+                        #{"file_name": "gyor1.csv"}],
+                        #{"file_name": "zala01uni.csv"}],
+                        #{"file_name": "zala03uniteljeskor.csv"}],
+                        #{"file_name": "zala04smartteljeskor.csv"}],
+                        {"file_name": "zala05.csv"}],
                 )     
             ]),    
 
