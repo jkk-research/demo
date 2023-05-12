@@ -6,9 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /3d marker1
-        - /waypointarray_marker1
-        - /pursuittarget_marker1
+        - /Grid1/Status1
       Splitter Ratio: 0.5
     Tree Height: 547
   - Class: rviz_common/Selection
@@ -32,7 +30,7 @@ Panels:
 Visualization Manager:
   Class: ""
   Displays:
-    - Alpha: 0.5
+    - Alpha: 0.20000000298023224
       Cell Size: 10
       Class: rviz_default_plugins/Grid
       Color: 160; 160; 164
@@ -47,7 +45,7 @@ Visualization Manager:
         Y: 0
         Z: 0
       Plane: XY
-      Plane Cell Count: 400
+      Plane Cell Count: 2400
       Reference Frame: <Fixed Frame>
       Value: true
     - Alpha: 1
@@ -122,7 +120,7 @@ Visualization Manager:
       Enabled: true
       Name: 3d marker
       Namespaces:
-        "": true
+        {}
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -160,7 +158,7 @@ Visualization Manager:
       Enabled: true
       Name: marker_steering
       Namespaces:
-        steering_path: true
+        {}
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -197,9 +195,147 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /marker_path
       Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: false
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: false
+      Invert Rainbow: true
+      Max Color: 255; 255; 255
+      Max Intensity: 1200
+      Min Color: 0; 0; 0
+      Min Intensity: 1
+      Name: os_center
+      Position Transformer: XYZ
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.11999999731779099
+      Style: Flat Squares
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /lexus3/os_center/points
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: false
+    - Alpha: 1
+      Autocompute Intensity Bounds: false
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: false
+      Invert Rainbow: true
+      Max Color: 255; 255; 255
+      Max Intensity: 1200
+      Min Color: 0; 0; 0
+      Min Intensity: 1
+      Name: os_right
+      Position Transformer: XYZ
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.07999999821186066
+      Style: Flat Squares
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /lexus3/os_right/points
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: false
+    - Align Bottom: true
+      Background Alpha: 0.10000000149011612
+      Background Color: 0; 0; 0
+      Class: rviz_2d_overlay_plugins/TextOverlay
+      Enabled: true
+      Foreground Alpha: 1
+      Foreground Color: 46; 194; 126
+      Invert Shadow: false
+      Name: GPS status
+      Overtake BG Color Properties: true
+      Overtake FG Color Properties: true
+      Overtake Position Properties: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /status_string_overlay_text
+      Value: true
+      font: DejaVu Sans Mono
+      height: 40
+      hor_alignment: left
+      hor_dist: 0
+      line width: 0
+      text size: 22
+      ver_alignment: top
+      ver_dist: 0
+      width: 200
+    - Align Bottom: true
+      Background Alpha: 0.10000000149011612
+      Background Color: 0; 0; 0
+      Class: rviz_2d_overlay_plugins/TextOverlay
+      Enabled: true
+      Foreground Alpha: 1
+      Foreground Color: 28; 113; 216
+      Invert Shadow: false
+      Name: Control status
+      Overtake BG Color Properties: true
+      Overtake FG Color Properties: true
+      Overtake Position Properties: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /lexus3/control_status_overlay_text
+      Value: true
+      font: DejaVu Sans Mono
+      height: 40
+      hor_alignment: left
+      hor_dist: 0
+      line width: 0
+      text size: 22
+      ver_alignment: top
+      ver_dist: 40
+      width: 200
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: LaneletMap
+      Namespaces:
+        left_lane_bound: true
+        right_lane_bound: true
+        road_lanelets: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /lanelet
+      Value: true
   Enabled: true
   Global Options:
-    Background Color: 48; 48; 48
+    Background Color: 255; 255; 255
     Fixed Frame: map_zala_0
     Frame Rate: 30
   Name: root
@@ -242,7 +378,7 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: 0.9649998545646667
+      Angle: -1.169999599456787
       Class: rviz_default_plugins/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
@@ -252,11 +388,11 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 4.828638076782227
+      Scale: 0.7815644145011902
       Target Frame: lexus3/base_link
       Value: TopDownOrtho (rviz_default_plugins)
-      X: -1.041444182395935
-      Y: 0.7035950422286987
+      X: -349.995361328125
+      Y: 1404.32666015625
     Saved: ~
 Window Geometry:
   Displays:

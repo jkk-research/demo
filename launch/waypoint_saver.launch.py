@@ -56,6 +56,7 @@ def generate_launch_description():
                         #{"file_name": "zala03uniteljeskor.csv"}],
                         #{"file_name": "zala04smartteljeskor.csv"}],
                         {"file_name": "zala05.csv"}],
+                        #{"file_name": "gyor02fek.csv"}],
                 )     
             ]),    
 

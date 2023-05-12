@@ -60,8 +60,9 @@ def generate_launch_description():
                 #{"file_name": "gyor1.csv"}],
                 #{"file_name": "zala02unitest.csv"}],
                 #{"file_name": "zala03uniteljeskor.csv"}],
-                {"file_name": "zala01uni.csv"}],
-                #{"file_name": "zala04smartteljeskor.csv"}],
+                {"file_name": "zala04smartteljeskor.csv"}],
+                #{"file_name": "zala01uni.csv"}],
+                #{"file_name": "gyor02fek.csv"}],
 
         ),
         Node(
@@ -85,5 +86,31 @@ def generate_launch_description():
             executable='rqt_reconfigure',
             name='rqt_rec',
             #output='screen',
+        ),
+        Node(
+            package='rviz_2d_overlay_plugins',
+            executable='string_to_overlay_text',
+            name='string_to_overlay_text_gps',
+            output='screen',
+            parameters=[
+                {"string_topic": "status_string"},
+                {"fg_color": "b"}, # colors can be: r,g,b,w,k,p,y (red,green,blue,white,black,pink,yellow)
+            ],
+        ),
+        Node(
+            package='rviz_2d_overlay_plugins',
+            executable='string_to_overlay_text',
+            name='string_to_overlay_text_ctr_status',
+            output='screen',
+            parameters=[
+                {"string_topic": "/lexus3/control_status"},
+                {"fg_color": "r"}, # colors can be: r,g,b,w,k,p,y (red,green,blue,white,black,pink,yellow)
+            ],
+        ),        
+        Node(
+            package='gui_lexus',
+            executable='pub_lane_markers',
+            name='pub_lane_markers_1',
+            output='screen',
         ),
     ])
