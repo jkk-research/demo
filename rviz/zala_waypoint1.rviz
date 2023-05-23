@@ -6,8 +6,8 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /Grid1/Status1
-      Splitter Ratio: 0.5
+        - /LaneletMap1/Namespaces1
+      Splitter Ratio: 0.5681341886520386
     Tree Height: 547
   - Class: rviz_common/Selection
     Name: Selection
@@ -26,11 +26,11 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: os_center
 Visualization Manager:
   Class: ""
   Displays:
-    - Alpha: 0.20000000298023224
+    - Alpha: 0.4000000059604645
       Cell Size: 10
       Class: rviz_default_plugins/Grid
       Color: 160; 160; 164
@@ -158,7 +158,7 @@ Visualization Manager:
       Enabled: true
       Name: marker_steering
       Namespaces:
-        {}
+        steering_path: true
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -207,28 +207,28 @@ Visualization Manager:
       Color: 255; 255; 255
       Color Transformer: Intensity
       Decay Time: 0
-      Enabled: false
+      Enabled: true
       Invert Rainbow: true
       Max Color: 255; 255; 255
-      Max Intensity: 1200
+      Max Intensity: 1000
       Min Color: 0; 0; 0
-      Min Intensity: 1
+      Min Intensity: 4
       Name: os_center
       Position Transformer: XYZ
       Selectable: true
-      Size (Pixels): 3
-      Size (m): 0.11999999731779099
-      Style: Flat Squares
+      Size (Pixels): 6
+      Size (m): 0.41999998688697815
+      Style: Points
       Topic:
         Depth: 5
         Durability Policy: Volatile
         Filter size: 10
         History Policy: Keep Last
-        Reliability Policy: Reliable
+        Reliability Policy: Best Effort
         Value: /lexus3/os_center/points
       Use Fixed Frame: true
       Use rainbow: true
-      Value: false
+      Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: false
       Autocompute Value Bounds:
@@ -258,7 +258,7 @@ Visualization Manager:
         Durability Policy: Volatile
         Filter size: 10
         History Policy: Keep Last
-        Reliability Policy: Reliable
+        Reliability Policy: Best Effort
         Value: /lexus3/os_right/points
       Use Fixed Frame: true
       Use rainbow: true
@@ -333,6 +333,31 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /lanelet
       Value: true
+    - Class: rviz_common/Group
+      Displays:
+        - Class: rviz_default_plugins/Axes
+          Enabled: true
+          Length: 1
+          Name: Axes
+          Radius: 0.10000000149011612
+          Reference Frame: map_zala_x
+          Value: true
+        - Class: rviz_default_plugins/TF
+          Enabled: true
+          Frame Timeout: 15
+          Frames:
+            All Enabled: false
+          Marker Scale: 10
+          Name: TF
+          Show Arrows: true
+          Show Axes: true
+          Show Names: false
+          Tree:
+            {}
+          Update Interval: 0
+          Value: true
+      Enabled: false
+      Name: Additional
   Enabled: true
   Global Options:
     Background Color: 255; 255; 255
@@ -378,21 +403,26 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: -1.169999599456787
-      Class: rviz_default_plugins/TopDownOrtho
+      Class: rviz_default_plugins/ThirdPersonFollower
+      Distance: 21.98574447631836
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
+      Focal Point:
+        X: 4.559494495391846
+        Y: -0.009284496307373047
+        Z: 3.278203439549543e-05
+      Focal Shape Fixed Size: false
+      Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 0.7815644145011902
+      Pitch: 0.3897970914840698
       Target Frame: lexus3/base_link
-      Value: TopDownOrtho (rviz_default_plugins)
-      X: -349.995361328125
-      Y: 1404.32666015625
+      Value: ThirdPersonFollower (rviz_default_plugins)
+      Yaw: 3.0422229766845703
     Saved: ~
 Window Geometry:
   Displays:

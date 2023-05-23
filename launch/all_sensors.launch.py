@@ -5,6 +5,12 @@ from launch.actions import IncludeLaunchDescription
 from launch_ros.substitutions import FindPackageShare
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_xml.launch_description_sources import XMLLaunchDescriptionSource
+from launch.actions import (RegisterEventHandler, EmitEvent, LogInfo)
+from launch_ros.events.lifecycle import ChangeState
+from launch_ros.event_handlers import OnStateTransition
+from launch.events import matches_action
+import lifecycle_msgs.msg
+
 
 def generate_launch_description():
     return LaunchDescription([
@@ -13,6 +19,27 @@ def generate_launch_description():
             PythonLaunchDescriptionSource([
                 FindPackageShare("lexus_bringup"), '/launch/drivers', '/gps_duro_reference.launch.py'])
         ),
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([
+                FindPackageShare("lexus_bringup"), '/launch/drivers', '/os_64_center_b.launch.py'])
+        ),
+
+        # TODO: instead of TimerAction delay
+        # RegisterEventHandler(
+        # OnStateTransition(
+        #     target_lifecycle_node=lexus3/os_center/os_sensor, 
+        #     goal_state='inactive',
+        #     entities=[LogInfo(msg="xxxxxxxxxxxxxxxxxxxxxxxxxxxxx os_sensor activating..."),])
+        # ),
+
+        # TimerAction(
+        #     period=0.0, # delay
+        #     actions=[        
+        #     IncludeLaunchDescription(
+        #         PythonLaunchDescriptionSource([
+        #             FindPackageShare("lexus_bringup"), '/launch/drivers', '/os_32_right_b.launch.py'])
+        #     ),        
+        # ]),
         IncludeLaunchDescription(
             XMLLaunchDescriptionSource([
                 FindPackageShare("lexus_bringup"), '/launch/drivers', '/can_pacmod3.launch.xml'])
@@ -42,69 +69,14 @@ def generate_launch_description():
                 ), 
             ]),
         # Control nodes   
-        TimerAction(
-            period=2.0, # delay
-            actions=[
-                IncludeLaunchDescription(
-                    PythonLaunchDescriptionSource([
-                        FindPackageShare("lexus_bringup"), '/launch', '/speed_control.launch.py'])
-                ),
-            ]),     
-        Node(
-            package='wayp_plan_tools',
-            executable='waypoint_loader',
-            name='wayp_load',
-            output='screen',
-            parameters=[
-                {"file_dir": "/mnt/bag/waypoints/"},
-                #{"file_name": "gyor1.csv"}],
-                #{"file_name": "zala02unitest.csv"}],
-                #{"file_name": "zala03uniteljeskor.csv"}],
-                #{"file_name": "zala06_teljes_kor.csv"}],
-                {"file_name": "zala08_demokor.csv"}],
-                #{"file_name": "zala01uni.csv"}],
-                #{"file_name": "gyor02fek.csv"}],
-
-        ),
-        Node(
-            package='wayp_plan_tools',
-            executable='waypoint_to_target',
-            name='wayp2target',
-            output='screen',
-            parameters=[
-                {"lookahead_min": 11.0},
-                {"lookahead_max": 17.0},
-                {"mps_alpha": 3.5}, # 12.6
-                {"mps_beta": 5.5}, # 19.8
-                {"waypoint_topic": "lexus3/waypointarray"}
-            ],
-        ),
-        # ros2 launch wayp_plan_tools singe_goal_pursuit.launch.py 
-        TimerAction(
-            period=3.0, # delay
-            actions=[
-                IncludeLaunchDescription(
-                    PythonLaunchDescriptionSource([
-                        FindPackageShare("wayp_plan_tools"), '/launch', '/single_goal_pursuit.launch.py'])
-                ),        
-            ]),  
-        # ros2 run rqt_reconfigure rqt_reconfigure 
-        Node(
-            package='rqt_reconfigure',
-            executable='rqt_reconfigure',
-            name='rqt_rec',
-            #output='screen',
-        ),
-        Node(
-            package='rviz_2d_overlay_plugins',
-            executable='string_to_overlay_text',
-            name='string_to_overlay_text_gps',
-            output='screen',
-            parameters=[
-                {"string_topic": "status_string"},
-                {"fg_color": "b"}, # colors can be: r,g,b,w,k,p,y (red,green,blue,white,black,pink,yellow)
-            ],
-        ),
+        # TimerAction(
+        #     period=2.0, # delay
+        #     actions=[
+        #         IncludeLaunchDescription(
+        #             PythonLaunchDescriptionSource([
+        #                 FindPackageShare("lexus_bringup"), '/launch', '/speed_control.launch.py'])
+        #         ),
+        #     ]),     
         Node(
             package='rviz_2d_overlay_plugins',
             executable='string_to_overlay_text',
@@ -115,6 +87,7 @@ def generate_launch_description():
                 {"fg_color": "r"}, # colors can be: r,g,b,w,k,p,y (red,green,blue,white,black,pink,yellow)
             ],
         ),        
+        ## egyetemi palya
         Node(
             package='gui_lexus',
             executable='pub_lane_markers',
