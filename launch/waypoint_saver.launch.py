@@ -51,11 +51,12 @@ def generate_launch_description():
                     output='screen',
                     parameters=[
                         {"file_dir": "/mnt/bag/waypoints/"},
-                        #{"file_name": "gyor1.csv"}],
+                        {"file_name": "gyor1.csv"}],
+                        #{"file_name": "gyor4eto.csv"}],
                         #{"file_name": "zala01uni.csv"}],
                         #{"file_name": "zala03uniteljeskor.csv"}],
                         #{"file_name": "zala04smartteljeskor.csv"}],
-                        {"file_name": "zala08_demokor.csv"}],
+                        #{"file_name": "zala08_demokor.csv"}],
                         #{"file_name": "zala06_teljes_kor.csv"}],
                         #{"file_name": "gyor02fek.csv"}],
                 )     

@@ -26,7 +26,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: os_center
+    SyncSource: ""
 Visualization Manager:
   Class: ""
   Displays:
@@ -141,24 +141,25 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /lexus3/waypointarray_marker
       Value: true
-    - Class: rviz_default_plugins/Marker
+    - Class: rviz_default_plugins/MarkerArray
       Enabled: true
-      Name: pursuittarget_marker
+      Name: pursuitviz
       Namespaces:
-        {}
+        cross_track_marker: true
+        pursuit_closest: true
+        pursuit_goal: true
       Topic:
         Depth: 5
         Durability Policy: Volatile
-        Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /lexus3/pursuittarget_marker
+        Value: /lexus3/pursuitviz
       Value: true
     - Class: rviz_default_plugins/Marker
       Enabled: true
       Name: marker_steering
       Namespaces:
-        steering_path: true
+        {}
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -280,7 +281,7 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /status_string_overlay_text
+        Value: /lexus3/gps/status_string_overlay_text
       Value: true
       font: DejaVu Sans Mono
       height: 40
@@ -323,9 +324,7 @@ Visualization Manager:
       Enabled: true
       Name: LaneletMap
       Namespaces:
-        left_lane_bound: true
-        right_lane_bound: true
-        road_lanelets: true
+        {}
       Topic:
         Depth: 5
         Durability Policy: Volatile

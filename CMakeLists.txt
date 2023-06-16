@@ -9,9 +9,24 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(pacmod3_msgs REQUIRED)
+
+
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
+
+set(ament_dependencies
+  rclcpp
+  std_msgs
+  pacmod3_msgs    
+)
+
+
+add_executable(temp_nn_pose src/temp_nn_pose.cpp)
+ament_target_dependencies(temp_nn_pose ${ament_dependencies}) 
+
+
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -31,5 +46,6 @@ install(DIRECTORY
   rviz
   DESTINATION share/${PROJECT_NAME})
 install(TARGETS
+  temp_nn_pose
   DESTINATION lib/${PROJECT_NAME})
 ament_package()

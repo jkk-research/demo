@@ -57,14 +57,15 @@ def generate_launch_description():
             output='screen',
             parameters=[
                 {"file_dir": "/mnt/bag/waypoints/"},
-                #{"file_name": "gyor1.csv"}],
-                #{"file_name": "zala02unitest.csv"}],
-                #{"file_name": "zala03uniteljeskor.csv"}],
-                #{"file_name": "zala06_teljes_kor.csv"}],
-                {"file_name": "zala08_demokor.csv"}],
-                #{"file_name": "zala01uni.csv"}],
-                #{"file_name": "gyor02fek.csv"}],
-
+                #{"file_name": "gyor1.csv"},
+                #{"file_name": "gyor4eto.csv"},
+                #{"file_name": "zala02unitest.csv"},
+                #{"file_name": "zala03uniteljeskor.csv"},
+                #{"file_name": "zala06_teljes_kor.csv"},
+                {"file_name": "zala08_demokor.csv"},
+                #{"file_name": "zala01uni.csv"},
+                #{"file_name": "gyor02fek.csv"},
+            ],
         ),
         Node(
             package='wayp_plan_tools',
@@ -79,15 +80,41 @@ def generate_launch_description():
                 {"waypoint_topic": "lexus3/waypointarray"}
             ],
         ),
-        # ros2 launch wayp_plan_tools singe_goal_pursuit.launch.py 
         TimerAction(
             period=3.0, # delay
             actions=[
-                IncludeLaunchDescription(
-                    PythonLaunchDescriptionSource([
-                        FindPackageShare("wayp_plan_tools"), '/launch', '/single_goal_pursuit.launch.py'])
+                Node(
+                    package='wayp_plan_tools',
+                    executable='single_goal_pursuit',
+                    name='single_goal_pursuit_1',
+                    output='screen',
+                    parameters=[
+                        {"cmd_topic": "lexus3/cmd_vel"},
+                        {"wheelbase": 2.789},
+                        {"waypoint_topic": "lexus3/targetpoints"},
+                    ],
                 ),        
-            ]),  
+            ],
+        ),    
+        # TimerAction(
+        #     period=3.0, # delay
+        #     actions=[
+        #         Node(
+        #             package='wayp_plan_tools',
+        #             executable='stanley_control',
+        #             name='stanley',
+        #             output='screen',
+        #             parameters=[
+        #                 {"cmd_topic": "lexus3/cmd_vel"},
+        #                 {"wheelbase": 2.789},
+        #                 {"waypoint_topic": "lexus3/targetpoints"},
+        #                 {"cross_track_err_rate": 0.8},
+        #                 {"heading_err_rate": 0.0},
+        #             ],
+        #         ),        
+        #     ],
+        # ),  
+
         # ros2 run rqt_reconfigure rqt_reconfigure 
         Node(
             package='rqt_reconfigure',
@@ -101,7 +128,7 @@ def generate_launch_description():
             name='string_to_overlay_text_gps',
             output='screen',
             parameters=[
-                {"string_topic": "status_string"},
+                {"string_topic": "/lexus3/gps/status_string"},
                 {"fg_color": "b"}, # colors can be: r,g,b,w,k,p,y (red,green,blue,white,black,pink,yellow)
             ],
         ),

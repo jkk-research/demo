@@ -14,41 +14,21 @@ import lifecycle_msgs.msg
 
 def generate_launch_description():
     return LaunchDescription([
+        # static tf
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([
+                FindPackageShare("lexus_bringup"), '/launch', '/tf_static.launch.py'])
+        ),
         # Drivers
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([
                 FindPackageShare("lexus_bringup"), '/launch/drivers', '/gps_duro_reference.launch.py'])
         ),
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([
-                FindPackageShare("lexus_bringup"), '/launch/drivers', '/os_64_center_b.launch.py'])
-        ),
-
-        # TODO: instead of TimerAction delay
-        # RegisterEventHandler(
-        # OnStateTransition(
-        #     target_lifecycle_node=lexus3/os_center/os_sensor, 
-        #     goal_state='inactive',
-        #     entities=[LogInfo(msg="xxxxxxxxxxxxxxxxxxxxxxxxxxxxx os_sensor activating..."),])
-        # ),
-
-        # TimerAction(
-        #     period=0.0, # delay
-        #     actions=[        
-        #     IncludeLaunchDescription(
-        #         PythonLaunchDescriptionSource([
-        #             FindPackageShare("lexus_bringup"), '/launch/drivers', '/os_32_right_b.launch.py'])
-        #     ),        
-        # ]),
-        IncludeLaunchDescription(
             XMLLaunchDescriptionSource([
                 FindPackageShare("lexus_bringup"), '/launch/drivers', '/can_pacmod3.launch.xml'])
         ),
         # General nodes
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([
-                FindPackageShare("lexus_bringup"), '/launch', '/tf_static.launch.py'])
-        ),
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([
                 FindPackageShare("lexus_bringup"), '/launch', '/3d_marker.launch.py'])
@@ -86,7 +66,30 @@ def generate_launch_description():
                 {"string_topic": "/lexus3/control_status"},
                 {"fg_color": "r"}, # colors can be: r,g,b,w,k,p,y (red,green,blue,white,black,pink,yellow)
             ],
-        ),        
+        ),  
+        ## LIDAR(s)
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([
+                FindPackageShare("lexus_bringup"), '/launch/drivers', '/os_64_center_b.launch.py'])
+        ),
+
+        # TODO: instead of TimerAction delay
+        # RegisterEventHandler(
+        # OnStateTransition(
+        #     target_lifecycle_node=lexus3/os_center/os_sensor, 
+        #     goal_state='inactive',
+        #     entities=[LogInfo(msg="xxxxxxxxxxxxxxxxxxxxxxxxxxxxx os_sensor activating..."),])
+        # ),
+
+        # TimerAction(
+        #     period=0.0, # delay
+        #     actions=[        
+        #     IncludeLaunchDescription(
+        #         PythonLaunchDescriptionSource([
+        #             FindPackageShare("lexus_bringup"), '/launch/drivers', '/os_32_right_b.launch.py'])
+        #     ),        
+        # ]),
+      
         ## egyetemi palya
         Node(
             package='gui_lexus',
